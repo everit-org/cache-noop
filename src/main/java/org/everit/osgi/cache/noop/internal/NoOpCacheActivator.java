@@ -18,34 +18,30 @@ package org.everit.osgi.cache.noop.internal;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 
-import org.everit.osgi.cache.CacheConfiguration;
-import org.everit.osgi.cache.CacheFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
 public class NoOpCacheActivator implements BundleActivator {
 
-    private ServiceRegistration<CacheFactory> cacheFactoryRegistration;
-
-    @SuppressWarnings("rawtypes")
-    private ServiceRegistration<CacheConfiguration> cacheConfigRegistration;
+    private ServiceRegistration<?> cacheSR;
 
     @Override
     public void start(final BundleContext context) throws Exception {
         Dictionary<String, String> properties = new Hashtable<String, String>(1);
         properties.put("cacheName", "noop");
-        cacheFactoryRegistration = context.registerService(CacheFactory.class, new NoOpCacheFactory(),
+        cacheSR = context.registerService(
+                new String[] { ConcurrentMap.class.getName(), Map.class.getName() },
+                new NoOpConcurrentMap(),
                 properties);
-        cacheConfigRegistration = context.registerService(CacheConfiguration.class,
-                new NoOpCacheConfiguration<Object, Object>(), properties);
     }
 
     @Override
     public void stop(final BundleContext context) throws Exception {
-        cacheFactoryRegistration.unregister();
-        cacheConfigRegistration.unregister();
+        cacheSR.unregister();
     }
 
 }

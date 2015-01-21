@@ -1,9 +1,8 @@
 cache-noop
 ==========
 
-NoOperation implementation of cache-api. The bundle
-registers CacheFactory and CacheConfiguration as OSGi
-service automatically.
+NoOperation implementation cache. The bundle registers a java.util.Map and a 
+java.util.concurrent.ConcurrentMap interfaces as OSGi service automatically.
 
 The services can be filtered with the following expression:
 `(cacheName=noop)`
