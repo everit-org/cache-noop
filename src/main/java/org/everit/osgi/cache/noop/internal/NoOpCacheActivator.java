@@ -25,7 +25,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
-public class NoOpCacheActivator implements BundleActivator {
+public class NoOpCacheActivator<K, V> implements BundleActivator {
 
     private ServiceRegistration<?> cacheSR;
 
@@ -35,7 +35,7 @@ public class NoOpCacheActivator implements BundleActivator {
         properties.put("cacheName", "noop");
         cacheSR = context.registerService(
                 new String[] { ConcurrentMap.class.getName(), Map.class.getName() },
-                new NoOpConcurrentMap(),
+                new NoOpConcurrentMap<K, V>(),
                 properties);
     }
 
