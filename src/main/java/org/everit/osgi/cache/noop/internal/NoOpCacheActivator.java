@@ -32,7 +32,7 @@ public class NoOpCacheActivator<K, V> implements BundleActivator {
     @Override
     public void start(final BundleContext context) throws Exception {
         Dictionary<String, String> properties = new Hashtable<String, String>(1);
-        properties.put("cacheName", "noop");
+        properties.put("cache.name", "noop");
         cacheSR = context.registerService(
                 new String[] { ConcurrentMap.class.getName(), Map.class.getName() },
                 new NoOpConcurrentMap<K, V>(),
