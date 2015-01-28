@@ -27,12 +27,16 @@ import org.osgi.framework.ServiceRegistration;
 
 public class NoOpCacheActivator<K, V> implements BundleActivator {
 
+    private static final String PROP_CACHE_DRIVER_NAME = "cache.driver.name";
+
+    private static final String DEFAULT_CACHE_DRIVER_NAME = "noop";
+
     private ServiceRegistration<?> cacheSR;
 
     @Override
     public void start(final BundleContext context) throws Exception {
         Dictionary<String, String> properties = new Hashtable<String, String>(1);
-        properties.put("cache.name", "noop");
+        properties.put(PROP_CACHE_DRIVER_NAME, DEFAULT_CACHE_DRIVER_NAME);
         cacheSR = context.registerService(
                 new String[] { ConcurrentMap.class.getName(), Map.class.getName() },
                 new NoOpConcurrentMap<K, V>(),
