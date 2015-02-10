@@ -1,6 +1,6 @@
 #cache-noop
 
-NoOperation cache-api[1] implementation. The bundle registers a java.util.Map 
+NoOperation [cache-api][1] implementation. The bundle registers a java.util.Map 
 and a java.util.concurrent.ConcurrentMap interfaces as OSGi service 
 automatically.
 
@@ -13,4 +13,4 @@ The values are available in constants:
 
 [![Analytics](https://ga-beacon.appspot.com/UA-15041869-4/everit-org/cache-noop)](https://github.com/igrigorik/ga-beacon)
 
-[1]https://github.com/everit-org/cache-api
+[1]: https://github.com/everit-org/cache-api
