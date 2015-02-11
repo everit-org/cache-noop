@@ -16,10 +16,13 @@
  */
 package org.everit.osgi.cache.noop;
 
+import java.util.concurrent.ConcurrentMap;
 
 public final class NoOpCacheConstants {
 
     public static final String CACHE_DRIVER_NAME = "noop";
+
+    public static final String OBJECT_CLASS_NAME_CONCURRENT_MAP = ConcurrentMap.class.getName();
 
     private NoOpCacheConstants() {
     }
