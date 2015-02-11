@@ -23,6 +23,7 @@ import org.everit.osgi.cache.CacheConstants;
 import org.everit.osgi.cache.noop.NoOpCacheConstants;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceRegistration;
 
 public class NoOpCacheActivator<K, V> implements BundleActivator {
@@ -32,6 +33,7 @@ public class NoOpCacheActivator<K, V> implements BundleActivator {
     @Override
     public void start(final BundleContext context) throws Exception {
         Dictionary<String, String> properties = new Hashtable<String, String>(1);
+        properties.put(Constants.SERVICE_DESCRIPTION, NoOpCacheConstants.DEFAULT_SERVICE_DESCRIPTION);
         properties.put(CacheConstants.PROP_CACHE_DRIVER_NAME, NoOpCacheConstants.CACHE_DRIVER_NAME);
         cacheSR = context.registerService(
                 new String[] {
