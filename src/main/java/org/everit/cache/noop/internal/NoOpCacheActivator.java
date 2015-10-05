@@ -44,8 +44,8 @@ public class NoOpCacheActivator<K, V> implements BundleActivator {
     properties.put(CacheConstants.ATTR_CACHE_DRIVER_NAME, NoOpCacheConstants.CACHE_DRIVER_NAME);
     cacheSR = context.registerService(
         new String[] {
-            NoOpCacheConstants.OBJECT_CLASS_NAME_CONCURRENT_MAP,
-            CacheConstants.OBJECT_CLASS_NAME_MAP },
+            NoOpCacheConstants.OBJECT_CLASS_NAME_CONCURRENT_MAP.getName(),
+            CacheConstants.OBJECT_CLASS_NAME_MAP.getName() },
         new NoOpConcurrentMap<K, V>(),
         properties);
   }
